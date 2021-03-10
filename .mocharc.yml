@@ -1,0 +1,3 @@
+recursive: false
+require: 'babel-register'
+spec: test/src/*.js

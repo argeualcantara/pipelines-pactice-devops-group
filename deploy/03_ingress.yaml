@@ -1,0 +1,15 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  labels:
+      app: my-nodejs-ingress
+  name: my-nodejs-ingress
+
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /*
+        backend:
+          serviceName: my-nodejs-service
+          servicePort: 80
