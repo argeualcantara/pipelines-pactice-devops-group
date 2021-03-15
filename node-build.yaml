@@ -1,0 +1,13 @@
+parameters:
+  nodeVersionSpec: 14.x
+
+steps:
+- task: NodeTool@0 
+  inputs:
+    versionSpec: ${{ parameters.nodeVersionSpec }}
+
+- script: npm install
+  displayName: NPM install
+
+- script: npm test
+  displayName: NPM test

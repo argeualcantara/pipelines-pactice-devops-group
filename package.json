@@ -4,7 +4,7 @@
   "description": "Unit testing Express routes using Mocha",
   "main": "index.js",
   "scripts": {
-    "test": "mocha >> ./test/test-results.txt",
+    "test": "mocha",
     "start": "node index.js"
   },
   "repository": {
