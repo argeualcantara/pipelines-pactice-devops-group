@@ -17,39 +17,8 @@ steps:
   parameters:
     nodeVersionSpec: 12.x
 
-- task: Docker@2
-  displayName: Login to GCR
+- task: PublishBuildArtifacts@1
   inputs:
-    command: login
-    containerRegistry: google-gcr-io
-
-- task: Docker@2
-  displayName: Build and push
-  inputs:
-    repository: stunning-chain-281818/argeualcantara/pipeline-service
-    command: buildAndPush
-    Dockerfile: ./Dockerfile
-    tags: |
-      latest
-      1.0.0
-
-- task: Docker@2
-  displayName: Logout to GCR
-  inputs:
-    command: logout
-    containerRegistry: google-gcr-io
-
-- script: |
-    KUBECTL_PATH=$(Agent.TempDirectory)/kubectl
-    curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl" -o ${KUBECTL_PATH}
-    echo "##vso[task.prependpath]$(Agent.TempDirectory)"
-  displayName: Install kubectl
-
-- task: DownloadSecureFile@1
-  name: kconfig # $(kconfig.secureFilePath)
-  inputs:
-    secureFile: kubeconfig
-- ${{ if eq(variables['Build.SourceBranchName'], 'main') }}:
-  - script: |
-      kubectl --kubeconfig $(kconfig.secureFilePath) create namespace $(namespace)
-      kubectl --kubeconfig $(kconfig.secureFilePath) apply -f ./deploy --namespace $(namespace)
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)/Dockerfile'
+    ArtifactName: 'teste'
+    publishLocation: 'Container'
