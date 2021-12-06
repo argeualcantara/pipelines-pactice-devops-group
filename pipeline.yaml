@@ -21,4 +21,3 @@ steps:
   inputs:
     PathtoPublish: '$(Build.ArtifactStagingDirectory)/Dockerfile'
     ArtifactName: 'teste'
-    publishLocation: 'Container'
