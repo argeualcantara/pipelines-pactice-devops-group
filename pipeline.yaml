@@ -19,5 +19,5 @@ steps:
 
 - task: PublishBuildArtifacts@1
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)/Dockerfile'
+    PathtoPublish: '$(Build.SourcesDirectory)/Dockerfile'
     ArtifactName: 'teste'
